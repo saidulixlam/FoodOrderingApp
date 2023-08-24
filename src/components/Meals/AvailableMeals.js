@@ -1,5 +1,5 @@
-// import { Fragment } from "react";
 import classes from'./AvailableMeals.module.css';
+import MealItem from './MealItem';
 const dummyMeals=[
     {
         id:'m1',
@@ -28,7 +28,7 @@ const dummyMeals=[
 ]
 const AvailableMeals = () => {
     const mealsList=dummyMeals.map((meal)=>
-        <li>{meal.name}</li>
+        <MealItem key={meal.id} name={meal.name} description={meal.description} price={meal.price}/>
     )
     return ( 
         <section className={classes.meals}>
