@@ -9,11 +9,11 @@ const MealItem = (props) => {
                     {props.description}
                 </div>
                 <div className={classes.price}>
-                    {props.price}
+                    {props.price}.00 Rs.
                 </div>
             </div>
             <div>
-               <MealItemForm/>
+               <MealItemForm item={props}/>
             </div>
 
         </li>

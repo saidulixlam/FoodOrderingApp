@@ -24,8 +24,8 @@
     cursor: pointer;
     background-color: transparent;
     border: 1px solid #8a2b06;
-    padding: 0.5rem 2rem;
-    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
     margin-left: 1rem;
   }
   
@@ -41,6 +41,46 @@
   }
   
   .actions .button {
+    background-color: #8a2b06;
+    color: white;
+  }
+  /* .add{
+    font: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #8a2b06;
+    padding: 0.5rem 0.5rem;
+    margin-left: 1rem;
+  } */
+  .newactions {
+    text-align: right;
+    /* margin-top: 1rem; */
+  }
+  
+  .newactions button {
+    font-size: larger;
+    font-weight: bolder;
+    
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #8a2b06;
+    padding: 0.5rem 1.5rem;
+    border-radius: 12px;
+    margin-left: 1rem;
+  }
+  
+  .newactions button:hover,
+  .newactions button:active {
+    background-color: #5a1a01;
+    border-color: #5a1a01;
+    color: white;
+  }
+  
+  .newactions .button--alt {
+    color: #8a2b06;
+  }
+  
+  .newactions .button {
     background-color: #8a2b06;
     color: white;
   }

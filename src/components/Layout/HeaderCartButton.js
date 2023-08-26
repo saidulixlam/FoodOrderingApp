@@ -4,9 +4,11 @@ import classes from './HeaderCartButton.module.css'
 import CartContext from "../../store/cart-context";
 const HeaderCartButton = (props) => {
     const cartCtx=useContext(CartContext);
-    const numberOfCartitems=cartCtx.items.reduce((currNumber,item)=>{
-        return currNumber + item.amount;
-    },0);
+    let totalItem=0;
+    cartCtx.items.forEach(element => {
+        totalItem=totalItem+Number(element.quantity)
+    });
+    
     return ( 
         <button className={classes.button} onClick={props.onShow}>
             <span className={classes.icon}>
@@ -16,7 +18,7 @@ const HeaderCartButton = (props) => {
                 Your Cart
             </span>
             <span className={classes.badge}>
-                {numberOfCartitems}
+                {totalItem}
             </span>
         </button>
      );
