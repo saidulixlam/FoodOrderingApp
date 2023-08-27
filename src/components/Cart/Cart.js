@@ -5,34 +5,36 @@ import CartContext from '../../store/cart-context';
 import classe from '../Meals/MealItem.module.css';
 const Cart = (item) => {
     const ctx = useContext(CartContext);
-    //console.log();
-    const hasItem=ctx.items.length>0;
+    const orderHandler = () => {
+        item.onClose();
+        // alert('order placed')
+    }
+    const hasItem = ctx.items.length > 0;
     let totalAmount = 0;
     ctx.items.forEach(element => {
         totalAmount += element.price * element.quantity;
     });
-    console.log(totalAmount);
     const cartItems = <ul className={classes['cart-items']}>
         {
-            ctx.items.map((item) => item.quantity>0 && (
+            ctx.items.map((item) => item.quantity > 0 && (
                 <li className={classe.meal} key={item.key}>
-                <div>
-                    <h3>{item.name}</h3>
-                    <div className={classe.price}>
-                        <span>{item.price}.00 Rs. </span>
-                        
-                    </div>
                     <div>
-                       <span>x{item.quantity}</span>
+                        <h3>{item.name}</h3>
+                        <div className={classe.price}>
+                            <span>{item.price}.00 Rs. </span>
+
+                        </div>
+                        <div>
+                            <span>x{item.quantity}</span>
+                        </div>
                     </div>
-                </div>
-             
+
                     <div className={classes.newactions}>
-                    <button onClick={()=>ctx.addItem({...item,quantity:'1'})}>+</button>
-                    <button onClick={()=>ctx.removeItem(item.id)} className={classes.button}>-</button>
-                </div>
-                
-            </li>
+                        <button onClick={() => ctx.addItem({ ...item, quantity: '1' })}>+</button>
+                        <button onClick={() => ctx.removeItem(item.id)} className={classes.button}>-</button>
+                    </div>
+
+                </li>
             ))
         }
     </ul>
@@ -45,7 +47,7 @@ const Cart = (item) => {
             </div>
             <div className={classes.actions}>
                 <button className={classes['button--alt']} onClick={item.onClose}>Close</button>
-                {hasItem && <button className={classes.button}>Order</button>}
+                {hasItem && <button onClick={orderHandler} className={classes.button}>Order</button>}
             </div>
         </Modal>
     );

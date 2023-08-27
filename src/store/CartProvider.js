@@ -5,38 +5,55 @@ const CartProvider = (props) => {
     const [items, updatedItems] = useState([]);
 
     const addItemHandler = (item) => {
-       
-        updatedItems([...items, item]);
-        items.forEach(ite => {
-            if (ite.id === item.id) {
-                ite.quantity=Number(ite.quantity);
-                item.quantity=Number(item.quantity);
-                ite.quantity+=(item.quantity);
-                updatedItems(items);
-            }
-        })
+        // Create a copy of the current items array
+        const updatedItemsArray = [...items];
+
+        // Check if an item with the same ID already exists
+        const existingItemIndex = updatedItemsArray.findIndex((existingItem) => existingItem.id === item.id);
+
+        if (existingItemIndex !== -1) {
+            // If the item with the same ID exists, update its quantity
+            updatedItemsArray[existingItemIndex].quantity += Number(item.quantity);
+        } else {
+            // If the item with the same ID doesn't exist, add it to the array
+            updatedItemsArray.push(item);
+        }
+
+        // Update the state with the new items array
+        updatedItems(updatedItemsArray);
     }
 
     const removeItemHandler = (id) => {
-        items.forEach(ite => {
-            if (ite.id === id) {
-                ite.quantity=Number(ite.quantity);
-                
-                ite.quantity=ite.quantity-1;
-                updatedItems(items)
-            }
-        })
-    }
-    const cartContext = {
+        // Create a copy of the current items array
+        const updatedItemsArray = [...items];
 
+        // Find the index of the item with the specified id
+        const itemIndex = updatedItemsArray.findIndex((item) => item.id === id);
+
+        if (itemIndex !== -1) {
+            // Create a copy of the item to avoid modifying the original item
+            const updatedItem = { ...updatedItemsArray[itemIndex] };
+
+            // Decrement the quantity of the item by 1
+            updatedItem.quantity = updatedItem.quantity - 1;
+
+            // Update the item in the array with the updated item
+            updatedItemsArray[itemIndex] = updatedItem;
+
+            // Update the state with the new items array
+            updatedItems(updatedItemsArray);
+        }
+    };
+
+    const cartContext = {
         items: items,
         totalAmount: 0,
+        alreadyHas: false,
         addItem: addItemHandler,
         removeItem: removeItemHandler
     }
     return (
         <CartContext.Provider value={cartContext}>
-            {console.log(cartContext)}
             {props.children}
         </CartContext.Provider>
     );

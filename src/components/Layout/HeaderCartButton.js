@@ -7,6 +7,7 @@ const HeaderCartButton = (props) => {
     let totalItem=0;
     cartCtx.items.forEach(element => {
         totalItem=totalItem+Number(element.quantity)
+        
     });
     return ( 
         <button className={classes.button} onClick={props.onShow}>
