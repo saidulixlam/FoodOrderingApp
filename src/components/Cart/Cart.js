@@ -5,34 +5,34 @@ import CartContext from '../../store/cart-context';
 import classe from '../Meals/MealItem.module.css';
 const Cart = (item) => {
     const ctx = useContext(CartContext);
-
+    //console.log();
     const hasItem=ctx.items.length>0;
     let totalAmount = 0;
     ctx.items.forEach(element => {
         totalAmount += element.price * element.quantity;
-       
     });
+    console.log(totalAmount);
     const cartItems = <ul className={classes['cart-items']}>
         {
-            ctx.items.map((item) => (
-                <li className={classe.meal}>
-                    {item.quantity > 0 && <div>
-                        <h3>{item.name}</h3>
-                        <div className={classe.price}>
-                            <span>{item.price}.00 Rs. </span>
-                            
-                        </div>
-                        <div>
-                           <span>x{item.quantity}</span>
-                        </div>
-                    </div>}
-                    {item.quantity>0 && 
-                        <div className={classes.newactions}>
-                        <button onClick={()=>ctx.addItem(item)}>+</button>
-                        <button onClick={()=>ctx.removeItem(item.id)} className={classes.button}>-</button>
+            ctx.items.map((item) => item.quantity>0 && (
+                <li className={classe.meal} key={item.key}>
+                <div>
+                    <h3>{item.name}</h3>
+                    <div className={classe.price}>
+                        <span>{item.price}.00 Rs. </span>
+                        
                     </div>
-                    }
-                </li>
+                    <div>
+                       <span>x{item.quantity}</span>
+                    </div>
+                </div>
+             
+                    <div className={classes.newactions}>
+                    <button onClick={()=>ctx.addItem({...item,quantity:'1'})}>+</button>
+                    <button onClick={()=>ctx.removeItem(item.id)} className={classes.button}>-</button>
+                </div>
+                
+            </li>
             ))
         }
     </ul>

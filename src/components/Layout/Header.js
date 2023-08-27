@@ -1,8 +1,9 @@
 import classes from './Header.module.css';
 import mealImage from '../../assests/meals.jpg'
-import { Fragment } from 'react';
+import { Fragment} from 'react';
 import HeaderCartButton from './HeaderCartButton';
 const Header = (props) => {
+    
     return (
         <Fragment >
             <header className={classes.header}>

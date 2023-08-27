@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext} from "react";
 import CartIcon from "../Cart/CartIcon";
 import classes from './HeaderCartButton.module.css'
 import CartContext from "../../store/cart-context";
@@ -8,7 +8,6 @@ const HeaderCartButton = (props) => {
     cartCtx.items.forEach(element => {
         totalItem=totalItem+Number(element.quantity)
     });
-    
     return ( 
         <button className={classes.button} onClick={props.onShow}>
             <span className={classes.icon}>

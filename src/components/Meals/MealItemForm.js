@@ -7,13 +7,14 @@ const MealItemForm = (props) => {
     const submitHandler = (e) => {
         e.preventDefault();
         const quantity = document.getElementById('amount' + props.item.id).value;
-        ctx.addItem({ ...props.item, quantity: quantity },props.item.id);
+        console.log(quantity);
+        ctx.addItem({...props.item, quantity: quantity });
+        //console.log(ctx);
 
         
     }
     return (
         <form className={classes.form} onSubmit={submitHandler} >
-            {console.log(ctx.items)}
             <Input label="Amount" input={{
                 id: 'amount' + props.item.id,
                 type: 'number',
